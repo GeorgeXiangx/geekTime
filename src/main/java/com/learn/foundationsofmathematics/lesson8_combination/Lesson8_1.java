@@ -1,4 +1,4 @@
-package com.learn.foundationsofmathematics.lesson8;
+package com.learn.foundationsofmathematics.lesson8_combination;
 
 import java.util.ArrayList;
 import java.util.Arrays;

@@ -1,4 +1,4 @@
-package com.learn.foundationsofmathematics.lesson7;
+package com.learn.foundationsofmathematics.lesson7_permutation;
 
 import java.util.ArrayList;
 import java.util.Arrays;
