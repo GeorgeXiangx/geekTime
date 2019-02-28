@@ -1,4 +1,4 @@
-package com.learn.multiprotest;
+package com.learn.concurrentprogramming.multiprotest;
 
 import java.util.concurrent.atomic.AtomicInteger;
 

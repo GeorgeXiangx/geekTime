@@ -1,4 +1,4 @@
-package com.learn.datastructureandalgorithm.lesson_41_dynamic_programming_2;
+package com.learn.datastructureandalgorithm.lesson41_dynamic_programming_2;
 
 /**
  * Created by XJH on 2019/1/29.
