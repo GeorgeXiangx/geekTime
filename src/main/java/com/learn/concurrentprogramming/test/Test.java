@@ -1,4 +1,4 @@
-package com.learn.concurrentprogramming.multiprotest;
+package com.learn.concurrentprogramming.test;
 
 /**
  * Created by Administrator on 2019/1/7.

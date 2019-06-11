@@ -28,6 +28,11 @@ public class TreeNode {
         this.explanation = explanation;
     }
 
+    public static void main(String[] args) {
+        TreeNode root = new TreeNode('0', null, "根节点");
+        root.getOrCreateTree("abc", root);
+    }
+
     /**
      * 获取或者创造树
      *
@@ -48,7 +53,7 @@ public class TreeNode {
         if (parent.sons.containsKey(c)) {
             found = parent.sons.get(c);
         } else {
-            TreeNode son = new TreeNode(c, parent.prefix, "");
+            TreeNode son = new TreeNode(c, parent.prefix + parent.label, "");
             parent.sons.put(c, son);
             found = son;
         }
