@@ -85,6 +85,8 @@ public class Test {
         }
 
         System.out.println("-----------------");
+        new Hashtable<>();
+        new HashMap<>();
         String timeStr = "00073.650000_201903190811_00001003";
         String timeStr2 = "00073.650000_201903190911_00001003";
         double code = timeStr.split("_")[1].hashCode();
