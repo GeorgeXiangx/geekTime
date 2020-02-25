@@ -3,7 +3,6 @@ package com.learn.test.collection;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * Created by XJH on 2019/12/12.
@@ -25,6 +24,8 @@ public class TestArrayList {
 
         print(list1);
 
+//        LinkedList
+//        Collection
     }
 
     public static void print(Collection c) {

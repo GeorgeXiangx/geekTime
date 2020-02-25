@@ -24,6 +24,7 @@ public class Test {
 
         ConcurrentHashMap concurrentHashMap = new ConcurrentHashMap();
         concurrentHashMap.put(1, 1);
+        System.out.println(concurrentHashMap.size());
 
         ThreadPoolExecutor threadPoolExecutor = new ThreadPoolExecutor(50,
                 500,
