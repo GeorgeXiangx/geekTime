@@ -7,14 +7,17 @@ import java.io.PrintWriter;
 import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 /**
- * Created by XJH on 2020/2/25.
+ * Created by XJH on 2020/2/26.
  *
- * @Description:java.io和java.net同步阻塞实现服务器(同时服务多个客户端)
+ * @Description:
  */
-public class SyncAndBlockIO4Server extends Thread{
+public class SyncBlockIOWithThreadPool extends Thread{
     private ServerSocket serverSocket;
+    private ExecutorService executorService;
 
     public int getPort(){
         return serverSocket.getLocalPort();
@@ -23,30 +26,22 @@ public class SyncAndBlockIO4Server extends Thread{
     @Override
     public void run() {
         try {
-            // 启一个server
             serverSocket = new ServerSocket(0);
+            // 初始化线程池
+            executorService = Executors.newFixedThreadPool(10);
+
             while (true) {
-                // 只要server监听到了客户端连接,阻塞等待客户端连接
                 Socket socket = serverSocket.accept();
-                // 另起一个RequestHandler线程来处理,当连接建立后，启动一个单独线程负责回复客户端请求。
-                RequestHandler requestHandler = new RequestHandler(socket);
-                requestHandler.start();
+                RequestHandler4ThreadPool requestHandler = new RequestHandler4ThreadPool(socket);
+                executorService.execute(requestHandler);
             }
         } catch (IOException e) {
             e.printStackTrace();
-        }finally {
-            if (serverSocket != null) {
-                try {
-                    serverSocket.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
         }
     }
 
     public static void main(String[] args) {
-        SyncAndBlockIO4Server server = new SyncAndBlockIO4Server();
+        SyncBlockIOWithThreadPool server = new SyncBlockIOWithThreadPool();
         server.start();
 
         // 利用 Socket 模拟了一个简单的客户端，只进行连接、读取、打印。
@@ -59,21 +54,19 @@ public class SyncAndBlockIO4Server extends Thread{
     }
 }
 
-// 简化实现，不做读取，直接发送字符串
-class RequestHandler extends Thread {
+class RequestHandler4ThreadPool extends Thread {
     private Socket socket;
 
-    public RequestHandler(Socket socket) {
+    public RequestHandler4ThreadPool(Socket socket) {
         this.socket = socket;
     }
 
     @Override
     public void run() {
-
         try (PrintWriter out = new PrintWriter(socket.getOutputStream())) {
-            out.println("Hell World");
+            System.out.println("Hello World");
             out.flush();
-        }catch (Exception e){
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
