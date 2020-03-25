@@ -35,8 +35,16 @@ public class Test {
 
     // 用泛型通配符"?",代表可传递任意类型
     // 用Object类型去接收
-    public static void showBox(Box<?> box) {
-        Object first = box.getFirst();
+//    public static void showBox(Box<?> box) {
+//        Object first = box.getFirst();
+//        System.out.println(first);
+//    }
+
+    // 通配符的上限
+    // 表示传入的参数必须是其类型或者是其子类型
+    public static void showBox(Box<? extends Number> box) {
+        // 这里可以使用上限的类型来接收
+        Number first = box.getFirst();
         System.out.println(first);
     }
 }
